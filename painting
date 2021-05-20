@@ -1,0 +1,44 @@
+from PIL import Image, ImageColor
+from PIL import ImageDraw
+width = 51#ширина, ось OX
+height = 51#длина, высота,или ось OY
+centr=25#отсчёт всегда начинается с 0
+image = Image.new("RGB", (width, height),("white"))
+draw = ImageDraw.Draw(image)
+def krug (radius):
+        draw.ellipse((centr-radius, centr-radius, centr+radius, centr+radius),None, 'red')
+    
+def kvadrat (storona):
+    draw.rectangle((centr-storona, centr-storona, centr+storona, centr+storona),None, 'red')
+def work():
+    stoop='0'
+    while stoop =='0':
+        while True:
+            figura=int(input("Введите цифру фигуру какторай вы хотите нарисовать 0-круг, 1- квадрат :"))
+            if figura ==0 or figura ==1 :
+                break
+            else:
+                print("Вы ввели что-то не то. Повторите попыку.")
+        if figura == 0 :
+            while True :
+                radius1 = int(input("Введите радиус круга от 1 до 25 :"))
+                if radius1 > 0 and radius1 < 26 :
+                    break
+                else :
+                    print("Вы ввели что-то не то. Повторите попыку.")
+            krug(radius1)
+            image.save("empty.png", "PNG")
+            stoop=input("Хотите продолжить? Если да то напишите 0, а если нет то что угодно))")
+        elif figura == 1 :
+            while True :
+                storona = int(input("Введите сторону квадрата от 1 до 25 :"))
+                if storona > 0 and storona < 26 :
+                    break
+                else :
+                    print("Вы ввели что-то не то. Повторите попыку.")
+            kvadrat(storona)
+            image.save("empty.png", "PNG")
+            stoop = input("Хотите продолжить? Если да то напишите 0, а если нет то что угодно))")
+work()
+
+image.save("empty.png", "PNG")
